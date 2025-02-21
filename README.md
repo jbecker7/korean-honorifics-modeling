@@ -28,6 +28,8 @@ Korean has three primary politeness levels that affect sentence endings:
 
 These politeness levels are combined with honorific speech when speaking to or about someone deserving of respect.
 
+A complexity that we hope to represent in the project is that there can sometimes be multiple valid politeness levels. What exact social factors contribute to someone feeling they can use polite speech as opposed to formal speech with, say, their superiors at work is a very complex topic with a plethora of [research](https://www.taylorfrancis.com/chapters/edit/10.4324/9781003090205-23/linguistic-politeness-korean-young-mee-yu-cho-jaehyun-jo) being done about it.
+
 ## **2. Scope of the Project**
 We aim to model a structured framework in **Forge** that ensures:
 - The correct **humble pronoun** is used based on the context.
