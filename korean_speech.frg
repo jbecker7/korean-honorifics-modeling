@@ -46,12 +46,11 @@ sig Utterance {
 // - Speaker != Listener
 // - Referent != either Speaker or Listener, if present
 
-pred basicUtteranceValidity {
-    all u : Utterance | {
-        u.speaker != u.listener
-        some u.referent implies {
-            u.referent != u.speaker // since u.speaker != u.listener, u.referent != u.listener
-        }
+pred basicUtteranceValidity[ u:Utterance ] {
+    u.speaker != u.listener
+    some u.referent implies {
+        u.referent != u.speaker 
+        u.referent != u.listener
     }
 }
 
