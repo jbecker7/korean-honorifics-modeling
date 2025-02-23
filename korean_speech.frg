@@ -36,3 +36,13 @@ sig Utterance {
 }
 
 // TO-DO: Predicates for well-formedness and to validate each field
+
+// WHAT BASIC RULES SHOULD ALL WELL-FORMED CONVERSATIONS FOLLOW?
+
+// - 1 Speaker
+// - 1 Listener
+// - 1 optional Referent
+// - 1 speech level
+// - 1 Verb Form
+// - Speaker != Listener
+// - Referent != either Speaker or Listener, if present
