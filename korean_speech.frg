@@ -116,3 +116,11 @@ pred wellformed {
         basicUtteranceValidity[u]
     }
 }
+
+one_utterance_no_referent: run {
+  wellformed
+} for exactly 2 Person, exactly 1 Utterance
+
+// one_utterance_with_referent run {
+//   wellformed
+// } for exactly 3 Person, exactly 1 Utterance
