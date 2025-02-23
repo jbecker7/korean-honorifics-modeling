@@ -48,16 +48,13 @@ We aim to model a structured framework in **Forge** that ensures:
 
 ## **3. Korean Honorifics Configurations**
 
-| Speaker Role | Listener Role | Referent Role | Pronoun Used | Verb Form              | Politeness Level                  |
-| ------------ | ------------- | ------------- | ------------ | ---------------------- | --------------------------------- |
-| Junior       | Senior        | N/A           | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche)              |
-| Junior       | Senior        | N/A           | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Senior       | Junior        | N/A           | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)                 |
-| Senior       | Junior        | N/A           | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
-| Equal        | Equal         | N/A           | 나 (na)      | Base (banmal)          | 해체 (haeche) / 해요체 (haeyoche) |
-| Junior       | Senior        | Senior        | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche)              |
-| Junior       | Senior        | Junior        | 저 (jeo)     | Base (banmal)          | 해요체 (haeyoche)                 |
-| Senior       | Junior        | Senior        | 나 (na)      | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Senior       | Junior        | Junior        | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
-| Equal        | Equal         | Senior        | 나 (na)      | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Equal        | Equal         | Junior        | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
+For any given speaker, here are the speaker's rules to follow. The first two columns represent the social context, while the latter three columns are the resultant grammar rules given this context:
+
+| Listener Rank | Setting       | Pronoun Used | Verb Form              | Politeness Level     |
+| ------------- | ------------- | ------------ | :--------------------- | :------------------- |
+| Senior        | Formal        | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche) |
+| Senior        | Polite        | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)    |
+| Junior        | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
+| Junior        | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
+| Equal         | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
+| Equal         | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
