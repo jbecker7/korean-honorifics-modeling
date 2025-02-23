@@ -12,6 +12,9 @@ one sig Haeche, Haeyoche, Hapsioche extends SpeechLevel {}
 sig VerbForm {} 
 one sig Base, Honorific extends VerbForm {}
 
+sig Setting {}
+one sig Formal, Polite, Casual extends Setting {}
+
 sig Person {}
 
 sig OtherPerson extends Person {
@@ -29,6 +32,7 @@ sig Conversation {
     referent: lone OtherPerson, // Optional, might not mention anyone
     verbForm: one VerbForm,
     speechLevel: one SpeechLevel,
+    setting: one Setting
 }
 
 // TO-DO: Predicates for well-formedness and to validate each field
