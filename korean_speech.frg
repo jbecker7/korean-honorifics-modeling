@@ -98,3 +98,10 @@ pred validVerbForm[ u:Utterance ] {
 // - if listener is Senior and setting is Polite or Casual, then politeness level is Haeyoche
 // - if listener is Equal or Junior and setting is Formal or Polite, then politeness level is Haeyoche
 // - if listener is Equal or Junior and setting is Casual, then politeness level is Haeche
+
+pred validSpeechLevel[ u:Utterance ] {
+    (u.listener.relativeRank = Senior and u.setting = Formal) implies u.speechLevel = Hapsioche
+    (u.listener.relativeRank = Senior and (u.setting = Polite or u.setting = Casual)) implies u.speechLevel = Haeyoche
+    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and (u.setting = Polite or u.setting = Formal)) implies u.speechLevel = Haeyoche
+    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and u.setting = Casual) implies u.speechLevel = Haeche
+}
