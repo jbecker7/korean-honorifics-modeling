@@ -67,6 +67,11 @@ pred basicUtteranceValidity {
 // - if listener is Junior or Equal in RankRelativeToSpeaker, then pronoun for "I" is Na
 // - if listener is Senior in RankRelativeToSpeaker, then pronoun for "I" is Jeo
 
+pred validPronoun[ u:Utterance ] {
+    u.listener.relativeRank = Senior implies u.speaker.pronoun = Jeo
+    u.listener.relativeRank = Junior or u.listener.relativeRank = Equal implies u.speaker.pronoun = Na
+}
+
 // For verb form, rules are:
 // - if listener is Junior or Equal in RankRelativeToSpeaker, then verb form is Base (banmal)
 // - if listener is Senior in RankRelativeToSpeaker, then verb form is Honorific (jondaetmal)
