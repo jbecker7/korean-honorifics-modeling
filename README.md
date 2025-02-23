@@ -58,3 +58,11 @@ For any given speaker, here are the speaker's rules to follow. The first two col
 | Junior        | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
 | Equal         | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
 | Equal         | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
+
+In addition, for any given speaker, there are also rules for the speaker when communicating about a **referent** to a listener. Note that the setting, pronoun used, and politeness are maintained from the rules with a listener (as given above):
+
+| Referent Rank | Verb Form              |
+| ------------- | ---------------------- |
+| Senior        | Honorific (jondaetmal) |
+| Junior        | Base (banmal)          |
+| Equal         | Base (banmal)          |
