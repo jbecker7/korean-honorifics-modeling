@@ -26,7 +26,7 @@ sig SpeakingPerson extends Person {
     pronoun: one Pronoun
 }
 
-sig Conversation {
+sig Utterance {
     speaker: one SpeakingPerson,
     listener: one OtherPerson,
     referent: lone OtherPerson, // Optional, might not mention anyone
