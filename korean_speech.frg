@@ -69,21 +69,34 @@ pred basicUtteranceValidity {
 
 pred validPronoun[ u:Utterance ] {
     u.listener.relativeRank = Senior implies u.speaker.pronoun = Jeo
-    u.listener.relativeRank = Junior or u.listener.relativeRank = Equal implies u.speaker.pronoun = Na
+    (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.speaker.pronoun = Na
 }
 
 // For verb form, rules are:
 // - if listener is Junior or Equal in RankRelativeToSpeaker, then verb form is Base (banmal)
 // - if listener is Senior in RankRelativeToSpeaker, then verb form is Honorific (jondaetmal)
 
-// For politeness level, rules are:
-// - if listener is Senior and setting is Formal, then politeness level is Hapsioche
-// - if listener is Senior and setting is Polite or Casual, then politeness level is Haeyoche
-// - if listener is Equal or Junior and setting is Formal or Polite, then politeness level is Haeyoche
-// - if listener is Equal or Junior and setting is Casual, then politeness level is Haeche
-
 // And if a referent exists for a given utterance, that language used to refer to it is specific to the
 // referent's rank, so it follows the same rules as a listener for verb form:
 
 // - if referent is Junior or Equal in RankRelativeToSpeaker, then verb form is Base (banmal)
 // - if referent is Senior in RankRelativeToSpeaker, then verb form is Honorific (jondaetmal)
+
+pred validVerbForm[ u:Utterance ] {
+    // if there is no referent, use the rank of listener, as is normal
+    no u.referent implies {
+        (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.verbForm = Base
+        u.listener.relativeRank = Senior implies u.verbForm = Honorific
+    }
+    // else if there is a referent, use rank of referent, although this is not a perfect model
+    some u.referent implies  {
+        (u.referent.relativeRank = Junior or u.referent.relativeRank = Equal) implies u.verbForm = Base
+        u.referent.relativeRank = Senior implies u.verbForm = Honorific
+    }
+}
+
+// For politeness level, rules are:
+// - if listener is Senior and setting is Formal, then politeness level is Hapsioche
+// - if listener is Senior and setting is Polite or Casual, then politeness level is Haeyoche
+// - if listener is Equal or Junior and setting is Formal or Polite, then politeness level is Haeyoche
+// - if listener is Equal or Junior and setting is Casual, then politeness level is Haeche
