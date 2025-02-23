@@ -42,9 +42,9 @@ A complexity that we hope to represent in the project is that there can sometime
 
 We aim to model a structured framework in **Forge** that ensures:
 
-- The correct **humble pronoun** is used based on the context.
-- The **correct verb form (base vs. honorific)** is chosen when referring to a person of higher status.
-- The **appropriate politeness level** is used based on the speaker-listener relationship.
+- The correct **humble pronoun** is used by the speaker based on the context.
+- The **correct verb form (base vs. honorific)** is chosen by the speaker when referring to a person of higher status and demonstrating respect towards them.
+- The **appropriate politeness level** is used by the speaker based on the speaker-listener relationship.
 
 ## **3. Korean Honorifics Configurations**
 
