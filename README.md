@@ -48,12 +48,12 @@ We aim to model a structured framework in **Forge** that ensures:
 
 ## **3. Korean Honorifics Configurations**
 
-For any given speaker, here are the speaker's rules to follow. The first two columns represent the social context, while the latter three columns are the resultant grammar rules given this context:
+For any given speaker, here are the speaker's rules to follow. The first two columns represent the social context, while the latter three columns are the resultant grammar rules for the speaker, given this context:
 
 | Listener Rank | Setting       | Pronoun Used | Verb Form              | Politeness Level     |
 | ------------- | ------------- | ------------ | :--------------------- | :------------------- |
 | Senior        | Formal        | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche) |
-| Senior        | Polite        | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)    |
+| Senior        | Polite/Casual | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)    |
 | Junior        | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
 | Junior        | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
 | Equal         | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
