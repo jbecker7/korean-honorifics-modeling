@@ -105,3 +105,14 @@ pred validSpeechLevel[ u:Utterance ] {
     ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and (u.setting = Polite or u.setting = Formal)) implies u.speechLevel = Haeyoche
     ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and u.setting = Casual) implies u.speechLevel = Haeche
 }
+
+// All together, we can now check for wellformedness:
+
+pred wellformed {
+    all u : Utterance | {
+        validPronoun[u]
+        validVerbForm[u]  
+        validSpeechLevel[u]
+        basicUtteranceValidity[u]
+    }
+}
