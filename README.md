@@ -42,22 +42,33 @@ A complexity that we hope to represent in the project is that there can sometime
 
 We aim to model a structured framework in **Forge** that ensures:
 
-- The correct **humble pronoun** is used based on the context.
-- The **correct verb form (base vs. honorific)** is chosen when referring to a person of higher status.
-- The **appropriate politeness level** is used based on the speaker-listener relationship.
+- The correct **humble pronoun** is used by the speaker based on the context.
+- The **correct verb form (base vs. honorific)** is chosen by the speaker when referring to a person of higher status and demonstrating respect towards them.
+- The **appropriate politeness level** is used by the speaker based on the speaker-listener relationship.
 
 ## **3. Korean Honorifics Configurations**
 
-| Speaker Role | Listener Role | Referent Role | Pronoun Used | Verb Form              | Politeness Level                  |
-| ------------ | ------------- | ------------- | ------------ | ---------------------- | --------------------------------- |
-| Junior       | Senior        | N/A           | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche)              |
-| Junior       | Senior        | N/A           | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Senior       | Junior        | N/A           | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)                 |
-| Senior       | Junior        | N/A           | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
-| Equal        | Equal         | N/A           | 나 (na)      | Base (banmal)          | 해체 (haeche) / 해요체 (haeyoche) |
-| Junior       | Senior        | Senior        | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche)              |
-| Junior       | Senior        | Junior        | 저 (jeo)     | Base (banmal)          | 해요체 (haeyoche)                 |
-| Senior       | Junior        | Senior        | 나 (na)      | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Senior       | Junior        | Junior        | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
-| Equal        | Equal         | Senior        | 나 (na)      | Honorific (jondaetmal) | 해요체 (haeyoche)                 |
-| Equal        | Equal         | Junior        | 나 (na)      | Base (banmal)          | 해체 (haeche)                     |
+For any given speaker, here are the speaker's rules to follow. The first two columns represent the social context, while the latter three columns are the resultant grammar rules for the speaker, given this context:
+
+| Listener Rank | Setting       | Pronoun Used | Verb Form              | Politeness Level     |
+| ------------- | ------------- | ------------ | :--------------------- | :------------------- |
+| Senior        | Formal        | 저 (jeo)     | Honorific (jondaetmal) | 합시오체 (hapsioche) |
+| Senior        | Polite/Casual | 저 (jeo)     | Honorific (jondaetmal) | 해요체 (haeyoche)    |
+| Junior        | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
+| Junior        | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
+| Equal         | Polite/Formal | 나 (na)      | Base (banmal)          | 해요체 (haeyoche)    |
+| Equal         | Casual        | 나 (na)      | Base (banmal)          | 해체 (haeche)        |
+
+In addition, for any given speaker, there are also rules for the speaker when communicating about a **referent** to a listener. Note that the setting, pronoun used, and politeness are maintained from the rules with a listener (as given above):
+
+| Referent Rank | Verb Form              |
+| ------------- | ---------------------- |
+| Senior        | Honorific (jondaetmal) |
+| Junior        | Base (banmal)          |
+| Equal         | Base (banmal)          |
+
+## Problems (for Jonathan)
+
+The main issue I see no way to fix is with the referent - in essence, right now, what I do for validity/wellformedness is check that, for a given utterance, if it has a referent, then that the verbForm of the utterance should be of the referent's rank. If there is no referent, then we take the verbForm depending on the rank of the listener.
+
+My understanding is, however, that obviously we can have multiple verb forms in one sentence, say, if I'm referring to my listener and then my referent - there are TWO verbForms present here, both of which are valid as I understand it, but we have no way to capture this relationship. Just wanted to bring this to your attention but I don't think there's an easy way around this.
