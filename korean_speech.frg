@@ -1,25 +1,24 @@
 #lang forge/froglet
 
-sig RelativeRankToSpeaker {} 
+abstract sig RelativeRankToSpeaker {} 
 one sig Senior, Junior, Equal extends RelativeRankToSpeaker {}
 
-sig Pronoun {} 
+abstract sig Pronoun {} 
 one sig Na, Jeo extends Pronoun {}
 
-sig SpeechLevel {}  // 
+abstract sig SpeechLevel {}  // 
 one sig Haeche, Haeyoche, Hapsioche extends SpeechLevel {}
 
-sig VerbForm {} 
+abstract sig VerbForm {} 
 one sig Base, Honorific extends VerbForm {}
 
-sig Setting {}
+abstract sig Setting {}
 one sig Formal, Polite, Casual extends Setting {}
 
-sig Person {}
+abstract sig Person {}
 
 sig OtherPerson extends Person {
-    relativeRank: one RelativeRankToSpeaker,
-    pronoun: one Pronoun
+    relativeRank: one RelativeRankToSpeaker
 }
 
 sig SpeakingPerson extends Person {
