@@ -39,14 +39,22 @@ sig Utterance {
 
 // WHAT BASIC RULES SHOULD ALL WELL-FORMED UTTERANCES FOLLOW?
 
-// - 1 Speaker
-// - 1 Listener
+// - 1 Speaker (enforced by one sig)
+// - 1 Listener (enforced by one sig)
 // - 1 optional Referent
-// - 1 speech level
-// - 1 Verb Form
+// - 1 speech level (enforced by one sig)
+// - 1 Verb Form (enforced by one sig)
 // - Speaker != Listener
 // - Referent != either Speaker or Listener, if present
 
+pred basicUtteranceValidity {
+    all u : Utterance | {
+        u.speaker != u.listener
+        some u.referent implies {
+            u.referent != u.speaker // since u.speaker != u.listener, u.referent != u.listener
+        }
+    }
+}
 
 // WHAT KOREAN-SPECIFIC RULES SHOULD ALL WELL-FORMED UTTERANCES FOLLOW?
 
