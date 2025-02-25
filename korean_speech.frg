@@ -1,5 +1,8 @@
 #lang forge/froglet
 
+
+// Sigs 
+
 abstract sig RelativeRankToSpeaker {} 
 one sig Senior, Junior, Equal extends RelativeRankToSpeaker {}
 
@@ -34,7 +37,7 @@ sig Utterance {
     setting: one Setting
 }
 
-// TO-DO: Predicates for well-formedness and to validate each field
+// Preds
 
 // WHAT BASIC RULES SHOULD ALL WELL-FORMED UTTERANCES FOLLOW?
 
@@ -117,10 +120,181 @@ pred wellformed {
     }
 }
 
+// Tests if a basic utterance satisfies structural constraints
+pred basicStructureValid {
+    all u: Utterance | basicUtteranceValidity[u]
+}
+
+// Test for various pronoun combinations
+pred seniorListenerUsesJeo {
+    all u: Utterance | u.listener.relativeRank = Senior implies u.speaker.pronoun = Jeo
+}
+
+pred juniorListenerUsesNa {
+    all u: Utterance | u.listener.relativeRank = Junior implies u.speaker.pronoun = Na
+}
+
+pred equalListenerUsesNa {
+    all u: Utterance | u.listener.relativeRank = Equal implies u.speaker.pronoun = Na
+}
+
+// Test for verb form rules
+pred seniorReferentUsesHonorific {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Senior implies u.verbForm = Honorific
+}
+
+pred juniorReferentUsesBase {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Junior implies u.verbForm = Base
+}
+
+pred equalReferentUsesBase {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Equal implies u.verbForm = Base
+}
+
+pred noReferentSeniorListenerUsesHonorific {
+    all u: Utterance | no u.referent and u.listener.relativeRank = Senior implies u.verbForm = Honorific
+}
+
+pred noReferentJuniorListenerUsesBase {
+    all u: Utterance | no u.referent and u.listener.relativeRank = Junior implies u.verbForm = Base
+}
+
+// Test for speech level rules
+pred seniorFormalUsesHapsioche {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Formal implies u.speechLevel = Hapsioche
+}
+
+pred seniorPoliteUsesHaeyoche {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Polite implies u.speechLevel = Haeyoche
+}
+
+pred seniorCasualUsesHaeyoche {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Casual implies u.speechLevel = Haeyoche
+}
+
+pred juniorFormalUsesHaeyoche {
+    all u: Utterance | u.listener.relativeRank = Junior and u.setting = Formal implies u.speechLevel = Haeyoche
+}
+
+pred juniorCasualUsesHaeche {
+    all u: Utterance | u.listener.relativeRank = Junior and u.setting = Casual implies u.speechLevel = Haeche
+}
+
+pred equalFormalUsesHaeyoche {
+    all u: Utterance | u.listener.relativeRank = Equal and u.setting = Formal implies u.speechLevel = Haeyoche
+}
+
+pred equalCasualUsesHaeche {
+    all u: Utterance | u.listener.relativeRank = Equal and u.setting = Casual implies u.speechLevel = Haeche
+}
+
+pred allRulesValid[u: Utterance] {
+    // Pronoun rules
+    u.listener.relativeRank = Senior implies u.speaker.pronoun = Jeo
+    (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.speaker.pronoun = Na
+    
+    // Verb form rules
+    some u.referent implies {
+        (u.referent.relativeRank = Junior or u.referent.relativeRank = Equal) implies u.verbForm = Base
+        u.referent.relativeRank = Senior implies u.verbForm = Honorific
+    }
+    no u.referent implies {
+        (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.verbForm = Base
+        u.listener.relativeRank = Senior implies u.verbForm = Honorific
+    }
+    
+    // Speech level rules
+    (u.listener.relativeRank = Senior and u.setting = Formal) implies u.speechLevel = Hapsioche
+    (u.listener.relativeRank = Senior and (u.setting = Polite or u.setting = Casual)) implies u.speechLevel = Haeyoche
+    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and (u.setting = Polite or u.setting = Formal)) implies u.speechLevel = Haeyoche
+    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and u.setting = Casual) implies u.speechLevel = Haeche
+    
+    // Basic validity
+    basicUtteranceValidity[u]
+}
+
+// Run commands for pronoun predicates
+senior_listener_jeo: run {
+    all u: Utterance | u.listener.relativeRank = Senior
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+junior_listener_na: run {
+    all u: Utterance | u.listener.relativeRank = Junior
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+equal_listener_na: run {
+    all u: Utterance | u.listener.relativeRank = Equal
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+// Run commands for verb form predicates
+senior_referent_honorific: run {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Senior
+    all u: Utterance | allRulesValid[u]
+} for exactly 3 Person, exactly 1 Utterance
+
+junior_referent_base: run {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Junior
+    all u: Utterance | allRulesValid[u]
+} for exactly 3 Person, exactly 1 Utterance
+
+equal_referent_base: run {
+    all u: Utterance | some u.referent and u.referent.relativeRank = Equal
+    all u: Utterance | allRulesValid[u]
+} for exactly 3 Person, exactly 1 Utterance
+
+no_referent_senior_honorific: run {
+    all u: Utterance | no u.referent and u.listener.relativeRank = Senior
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+no_referent_junior_base: run {
+    all u: Utterance | no u.referent and u.listener.relativeRank = Junior
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+// Run commands for speech level predicates
+senior_formal_hapsioche: run {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Formal
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+senior_polite_haeyoche: run {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Polite
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+senior_casual_haeyoche: run {
+    all u: Utterance | u.listener.relativeRank = Senior and u.setting = Casual
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+junior_formal_haeyoche: run {
+    all u: Utterance | u.listener.relativeRank = Junior and u.setting = Formal
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+junior_casual_haeche: run {
+    all u: Utterance | u.listener.relativeRank = Junior and u.setting = Casual
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+equal_formal_haeyoche: run {
+    all u: Utterance | u.listener.relativeRank = Equal and u.setting = Formal
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
+equal_casual_haeche: run {
+    all u: Utterance | u.listener.relativeRank = Equal and u.setting = Casual
+    all u: Utterance | allRulesValid[u]
+} for exactly 2 Person, exactly 1 Utterance
+
 one_utterance_no_referent: run {
   wellformed
 } for exactly 2 Person, exactly 1 Utterance
 
-// one_utterance_with_referent run {
-//   wellformed
-// } for exactly 3 Person, exactly 1 Utterance
+run {
+  wellformed
+} for exactly 3 Person, exactly 1 Utterance
