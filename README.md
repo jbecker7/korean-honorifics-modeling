@@ -1,4 +1,6 @@
-# Korean Honorific Speech Formality Modeling: Jonathan Becker and Ben Kang
+# Korean Honorific Speech Formality Modeling
+**Jonathan Becker, Ben Kang**  
+CS 1710 – [Logic for Systems]
 
 ## Project Objective
 
