@@ -2,7 +2,7 @@
 
 ## Project Objective
 
-This project models the complex speech formality system in Korean language using Forge. Korean is a language deeply rooted in hierarchical social structures, where the way one speaks depends on social status, relationship contexts, and formality settings<sup>[1](https://onlinelibrary.wiley.com/doi/epdf/10.1002/9781118371008.ch17)</sup>. 
+This project models the complex speech formality system in Korean language using Forge. Korean is a language deeply rooted in hierarchical social structures, where the way one speaks depends on social status, relationship contexts, and formality settings.<sup>[1](https://onlinelibrary.wiley.com/doi/epdf/10.1002/9781118371008.ch17)</sup> 
 
 The model aims to capture three key components of Korean speech formality:
 - **Pronoun Choice**: When to use humble "jeo" vs. neutral "na" for "I"
