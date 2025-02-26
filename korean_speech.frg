@@ -203,27 +203,9 @@ pred equalCasualUsesHaeche {
 // A complete validation predicate that checks all rules for a single utterance
 // Used in test cases to ensure all rules are followed
 pred allRulesValid[u: Utterance] {
-    // Pronoun rules
-    u.listener.relativeRank = Senior implies u.speaker.pronoun = Jeo
-    (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.speaker.pronoun = Na
-    
-    // Verb form rules
-    some u.referent implies {
-        (u.referent.relativeRank = Junior or u.referent.relativeRank = Equal) implies u.verbForm = Base
-        u.referent.relativeRank = Senior implies u.verbForm = Honorific
-    }
-    no u.referent implies {
-        (u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) implies u.verbForm = Base
-        u.listener.relativeRank = Senior implies u.verbForm = Honorific
-    }
-    
-    // Speech level rules
-    (u.listener.relativeRank = Senior and u.setting = Formal) implies u.speechLevel = Hapsioche
-    (u.listener.relativeRank = Senior and (u.setting = Polite or u.setting = Casual)) implies u.speechLevel = Haeyoche
-    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and (u.setting = Polite or u.setting = Formal)) implies u.speechLevel = Haeyoche
-    ((u.listener.relativeRank = Junior or u.listener.relativeRank = Equal) and u.setting = Casual) implies u.speechLevel = Haeche
-    
-    // Basic validity
+    validPronoun[u]
+    validVerbForm[u]  
+    validSpeechLevel[u]
     basicUtteranceValidity[u]
 }
 
