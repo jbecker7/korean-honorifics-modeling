@@ -119,7 +119,7 @@ This model successfully captures the core grammatical rules of Korean speech for
 3. While the model accurately represents the rule-based components of Korean formality, it doesn't capture some of the nuanced social factors that can sometimes override these rules in real-world contexts.
 
 Future work could extend this model to include:
-- Extending the model to encapsulate an entire conversation, which contains multiple `Person`s who each take turns making `Utterance`s (this would also be logical since, currently, the `setting` field is determined by context of the conversation, so it doesn't make the most sense existing as a field within an utterance itself)
+- Extending the model to represent an entire conversation, which might contain a `setting` (which is somewhat currently misplaced in `Utterance`) and multiple `Person` sigs who each take turns making `Utterance`s back and forth. This would also allow for the introduction of a temporal state to track how a conversation proceeds
 - Additional speech levels that exist in Korean
 - Modeling mood and tense interactions with formality
 - Representing regional and age-based variations in formality rules
