@@ -41,7 +41,7 @@ Additionally, when speaking about a third person (referent), the verb form follo
 The model represents an utterance in Korean as having:
 - A speaker who uses a specific pronoun
 - A listener who has a rank relative to the speaker (senior, junior, or equal)
-- An optional referent (person being discussed) who also has a relative rank
+- An optional referent (person being discussed) who also has a relative rank to the speaker
 - A speech level and verb form that must conform to Korean formality rules
 - A setting (formal, polite, or casual)
 
@@ -69,21 +69,21 @@ When examining an instance in Sterling's default visualization:
 
 ### Key Signatures
 
-- **RelativeRankToSpeaker**: Represents the hierarchical relationship (Senior, Junior, Equal)
-- **Pronoun**: Represents Korean first-person pronouns (Na, Jeo)
-- **SpeechLevel**: Represents degrees of formality in speech (Haeche, Haeyoche, Hapsioche)
-- **VerbForm**: Represents the basic/honorific distinction in verbs (Base, Honorific)
-- **Setting**: Represents conversational contexts (Formal, Polite, Casual)
-- **Utterance**: Ties together a speaker, listener, optional referent, and linguistic choices
+- `RelativeRankToSpeaker`: Represents the hierarchical relationship (`Senior`, `Junior`, `Equal`)
+- `Pronoun`: Represents Korean first-person pronouns (`Na`, `Jeo`)
+- `SpeechLevel`: Represents degrees of formality in speech (`Haeche`, `Haeyoche`, `Hapsioche`)
+- `VerbForm`: Represents the basic/honorific distinction in verbs (`Base`, `Honorific`)
+- `Setting`: Represents conversational contexts (`Formal`, `Polite`, `Casual`)
+- `Utterance`: Ties together a speaker, listener, optional referent, and linguistic choices
 
 ### Core Predicates
 
-- **validPronoun**: Ensures the correct pronoun is used based on listener rank
-- **validVerbForm**: Ensures the correct verb form is used based on listener or referent rank
-- **validSpeechLevel**: Ensures the appropriate formality level based on rank and setting
-- **basicUtteranceValidity**: Enforces structural constraints on utterances
-- **wellformed**: Combines all rules to define a grammatically correct Korean utterance
-- **allRulesValid**: A utility predicate that enforces all rules on a single utterance
+- `validPronoun`: Ensures the correct pronoun is used by the speaker based on listener rank
+- `validVerbForm`: Ensures the correct verb form is used by the speaker based on listener or referent rank
+- `validSpeechLevel`: Ensures the appropriate formality level used by the speaker based on rank and setting
+- `basicUtteranceValidity`: Enforces structural constraints on utterances
+- `wellformed`: Combines all rules to define a grammatically correct Korean utterance
+- `allRulesValid`: A utility predicate that enforces all rules on a single utterance
 
 ## Testing
 
@@ -119,6 +119,7 @@ This model successfully captures the core grammatical rules of Korean speech for
 3. While the model accurately represents the rule-based components of Korean formality, it doesn't capture some of the nuanced social factors that can sometimes override these rules in real-world contexts.
 
 Future work could extend this model to include:
+- Extending the model to encapsulate an entire conversation, which contains multiple `Person`s who each take turns making `Utterance`s (this would also be logical since, currently, the `setting` field is determined by context of the conversation, so it doesn't make the most sense existing as a field within an utterance itself)
 - Additional speech levels that exist in Korean
 - Modeling mood and tense interactions with formality
 - Representing regional and age-based variations in formality rules
